@@ -4,8 +4,7 @@ import asyncio
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-client = commands.Bot(command_prefix=".",intents=discord.Intents.all())
-
+client = commands.Bot(command_prefix="$",intents=discord.Intents.all())
 
 
 
@@ -13,7 +12,7 @@ client = commands.Bot(command_prefix=".",intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('> .help v2.1.0 '))
+    await client.change_presence(activity=discord.Game('> $help v2.1.1 '))
 
     print('Connected to bot: {}'.format(client.user.name))
     print('Bot ID: {}'.format(client.user.id))
@@ -83,8 +82,34 @@ async def userinfo(ctx, member: discord.Member = None):
     print(member.top_role.mention)
     await ctx.send(embed=embed)
 
+@client.command(description="Mutes the specified user.")
+@commands.has_permissions(manage_messages=True)
+async def mute(ctx, member: discord.Member, *, reason=None):
+    guild = ctx.guild
+    mutedRole = discord.utils.get(guild.roles, name="Muteduser")
+
+    if not mutedRole:
+        mutedRole = await guild.create_role(name="Muteduser")
+
+        for channel in guild.channels:
+            await channel.set_permissions(mutedRole, speak=False, send_messages=False, read_message_history=True, read_messages=False)
+    embed = discord.Embed(title="muted", description=f"{member.mention} was muted ", colour=discord.Colour.light_gray())
+    embed.add_field(name="reason:", value=reason, inline=False)
+    await ctx.send(embed=embed)
+    await member.add_roles(mutedRole, reason=reason)
+    await member.send(f" you have been muted from: {guild.name} reason: {reason}")
 
 
+
+@client.command(description="Unmutes a specified user.")
+@commands.has_permissions(manage_messages=True)
+async def unmute(ctx, member: discord.Member):
+   mutedRole = discord.utils.get(ctx.guild.roles, name="Muteduser")
+
+   await member.remove_roles(mutedRole)
+   await member.send(f" you have unmutedd from: - {ctx.guild.name}")
+   embed = discord.Embed(title="unmute", description=f" unmuted-{member.mention}",colour=discord.Colour.light_gray())
+   await ctx.send(embed=embed)
 
 
 @client.command()
@@ -110,4 +135,4 @@ async def clear(ctx, amount=5):
 
 
 
-client.run("ODE0NDg0MTg0MzE5Nzg3MDA4.YDehgQ.kz-bAXjyP0qGTtEulGEzKRO8QRw")
+client.run("ODE4MTM0MDUyMTIwOTUyODcy.YETotg.ZOgFFFg9b_QsBPz6fu0RRdcJe4E")
