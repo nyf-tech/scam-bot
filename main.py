@@ -1,18 +1,28 @@
 import discord
 import random
 import asyncio
+import json
+import io
+import os
+import requests
+import contextlib
+import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot
+from discord import File
+
+from PIL import Image, ImageDraw, ImageFont
+import io
+
+import urllib.request
 
 client = commands.Bot(command_prefix="$",intents=discord.Intents.all())
 
 
 
-
-
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('> $help v2.1.1 '))
+    await client.change_presence(activity=discord.Game('> $help v2.2.0 '))
 
     print('Connected to bot: {}'.format(client.user.name))
     print('Bot ID: {}'.format(client.user.id))
@@ -125,12 +135,15 @@ async def invites(ctx, usr=None):
     await ctx.send(f"{user.name} has invited {total_invites} member{'' if total_invites == 1 else 's'}!")
 
 
-
 @client.command()
 async def clear(ctx, amount=5):
         await ctx.channel.purge(limit=amount)
 
 
+@client.event
+async def on_message(message):
+    if isinstance(message.channel, discord.channel.DMChannel) and message.author != client.user:
+        await message.channel.send('Witaj na serverze zarabiamy ')
 
 
 
