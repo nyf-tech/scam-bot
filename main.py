@@ -10,7 +10,10 @@ import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord import File
-
+from datetime import datetime, timedelta
+from discord.ext import commands
+import time
+import sched
 from PIL import Image, ImageDraw, ImageFont
 import io
 
@@ -144,6 +147,10 @@ async def clear(ctx, amount=5):
 async def on_message(message):
     if isinstance(message.channel, discord.channel.DMChannel) and message.author != client.user:
         await message.channel.send('Witaj na serverze zarabiamy ')
+
+
+
+
 
 
 
