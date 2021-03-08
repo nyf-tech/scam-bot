@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 from discord.ext import commands
 import time
 import sched
-from PIL import Image, ImageDraw, ImageFont
 import io
 
 import urllib.request
