@@ -12,7 +12,7 @@ client = commands.Bot(command_prefix="$",intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.watching('> $help v2.1.1 '))
+    await client.change_presence(activity=discord.Game('> $help v2.1.1 '))
 
     print('Connected to bot: {}'.format(client.user.name))
     print('Bot ID: {}'.format(client.user.id))
