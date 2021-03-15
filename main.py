@@ -37,11 +37,11 @@ async def ping(ctx):
 
 @client.event
 async def on_member_join(member):
-   await client.get_channel(818132859964620840).send(f"{member.name} Dołączył")
+   await client.get_channel(820935110429507637).send(f"{member.name} Dołączył")
 
 @client.event
 async def on_member_remove(member):
-   await client.get_channel(818132859964620840).send(f"{member.name} opuścił")
+   await client.get_channel(820935110429507637).send(f"{member.name} opuścił")
 
 
 @client.event
