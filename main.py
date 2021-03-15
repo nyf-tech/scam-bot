@@ -24,7 +24,7 @@ client = commands.Bot(command_prefix="$",intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Game('> $help v2.2.2 '))
+    await client.change_presence(activity=discord.Game('> $help kosmita testy '))
 
     print('Connected to bot: {}'.format(client.user.name))
     print('Bot ID: {}'.format(client.user.id))
@@ -32,16 +32,16 @@ async def on_ready():
 
 @client.command()
 async def ping(ctx):
- await ctx.send(f'Pong! 🏓 {round(client.latency * 1000)}ms')
+ await ctx.send(f'Pong! đźŹ“ {round(client.latency * 1000)}ms')
 
 
 @client.event
 async def on_member_join(member):
-   await client.get_channel(820935110429507637).send(f"{member.name} Dołączył")
+   await client.get_channel(819633319418920991).send(f"{member.name} DoĹ‚Ä…czyĹ‚")
 
 @client.event
 async def on_member_remove(member):
-   await client.get_channel(820935110429507637).send(f"{member.name} opuścił")
+   await client.get_channel(819633319418920991).send(f"{member.name} opuĹ›ciĹ‚")
 
 
 @client.event
@@ -142,15 +142,5 @@ async def clear(ctx, amount=5):
         await ctx.channel.purge(limit=amount)
 
 
-@client.event
-async def on_message(message):
-    if isinstance(message.channel, discord.channel.DMChannel) and message.author != client.user:
-        await message.channel.send('Witaj na serverze zarabiamy ')
 
-
-
-
-
-
-
-client.run("ODIwOTM2NDQyNjcwMDg4MTkz.YE8apA.ZbnHdUPmRAGIHnrzXCyjlQaRTYM")
+client.run("ODIwOTM2NDQyNjcwMDg4MTkz.YE8apA.7IGdcnt8lX_wBU2XdtwdtS2uJnc")
